@@ -7,11 +7,11 @@ Clean Architecture ASP.Net Core Application (SPA Js services) with Angular
 
 3 project:
 
-1.Core
-2.Infrastructure
-3.Web
+1. Core
+2. Infrastructure
+3. Web
 
--Repository pattern (interface)
--Unit of Work (interface)
--Automapper
--Application DB Context
+- Repository pattern (interface)
+- Unit of Work (interface)
+- Automapper
+- Application DB Context
