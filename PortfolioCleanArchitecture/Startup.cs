@@ -7,7 +7,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using AutoMapper;
 using Core;
-
+using Swashbuckle.AspNetCore.Swagger;
+using Web.Extensions;
 
 namespace PortfolioCleanArchitecture
 {
@@ -25,6 +26,11 @@ namespace PortfolioCleanArchitecture
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
+            services.AddSwaggerGen(c =>
+              {
+                  c.SwaggerDoc("v1", new Info { Title = "AspNetCore - Angular Portfolio", Version = "v1" });
+              });
+
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
             {
@@ -35,7 +41,7 @@ namespace PortfolioCleanArchitecture
             {
                 cfg.AddProfile<AutoMapperProfile>();
             });
-           
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -43,18 +49,20 @@ namespace PortfolioCleanArchitecture
         {
             if (env.IsDevelopment())
             {
-                app.UseDeveloperExceptionPage();
+                app.AddDevMiddlewares();
             }
             else
             {
                 app.UseExceptionHandler("/Error");
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
-            }
+            }    
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseSpaStaticFiles();
+
+        
 
             app.UseMvc(routes =>
             {

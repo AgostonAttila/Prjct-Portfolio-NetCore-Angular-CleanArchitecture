@@ -15,3 +15,8 @@ Clean Architecture ASP.Net Core Application (SPA Js services) with Angular
 - Unit of Work (interface)
 - Automapper
 - Application DB Context
+
+## 20190318  
+
+- Swagger (basic/standard)
+- ILogger LoggerFactory (basic/standard)
